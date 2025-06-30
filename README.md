@@ -2,7 +2,7 @@
 
 BlogPur is a responsive blog web app built with Django. It supports user authentication, CRUD operations for blog posts, and a modern Bootstrap UI.
 
-![Screenshot](app.png)
+![Screenshot](prooduct.png)
 
 ## 🔥 Features
 
