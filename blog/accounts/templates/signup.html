@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      {% if user.is_authenticated %}
+        <div class="alert alert-info text-center shadow-sm p-4">
+          <h4>You're already logged in.</h4>
+          <p>Go to <a href="{% url 'all_posts' %}">your posts</a> or <a href="{% url 'logout' %}">Logout</a>.</p>
+        </div>
+      {% else %}
+        <div class="card shadow">
+          <div class="card-header bg-primary text-white text-center">
+            <h4>Create a New Account</h4>
+          </div>
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-success w-100 mt-2">Sign Up</button>
+            </form>
+            <p class="text-center mt-3">
+              Already have an account? <a href="{% url 'login' %}">Login here</a>
+            </p>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

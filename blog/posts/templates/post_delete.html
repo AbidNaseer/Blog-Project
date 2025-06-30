@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow border-danger">
+        <div class="card-header bg-danger text-white">
+          <h4>Delete Post Confirmation</h4>
+        </div>
+        <div class="card-body">
+          <p class="lead">Kya aap waqai is post ko delete karna chahte hain?</p>
+
+          <div class="mb-3 p-3 border rounded bg-light">
+            <strong>Post:</strong>
+            <p class="mb-0">{{ post.text }}</p>
+            {% if post.image %}
+              <img src="{{ post.image.url }}" class="img-fluid mt-2" style="max-height: 200px;" alt="Post Image">
+            {% endif %}
+          </div>
+
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, delete it</button>
+            <a href="{% url 'all_posts' %}" class="btn btn-secondary">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

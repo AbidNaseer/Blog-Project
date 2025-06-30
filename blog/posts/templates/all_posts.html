@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Latest Posts</h2>
+    <a href="{% url 'create_post' %}" class="btn btn-success">+ Create New Post</a>
+  </div>
+
+  <div class="row">
+    {% for post in posts %}
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          {% if post.image %}
+            <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text text-bold text-primary">{{ post.text }}</p>
+            <p class="text-muted mt-auto"><small>Posted on {{ post.created_at|date:"M d, Y" }}</small></p>
+            <a href="{% url 'update_post' post.id %}" class="btn btn-primary mt-2">Edit Post</a>
+            <a href="{% url 'delete_post' post.id %}" class="btn btn-danger btn-small mt-2">Delete Post</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>No posts available.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
